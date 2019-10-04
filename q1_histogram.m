@@ -2,7 +2,7 @@
 clear; clc; clf;
 
 %% Read Image
-I = double(imread('./Training/206.jpg'));
+I = double(imread('./Training/22.jpg'));
 r = I(:,:,1);
 g = I(:,:,2);
 b = I(:,:,3);
@@ -35,9 +35,9 @@ num_bin_wb = 8; % Number of bins
 q_rg = 1 / num_bin_rg; % Quantization
 q_by = 1 / num_bin_by; % Quantization
 q_wb = 1 / num_bin_wb; % Quantization
-bin_rg = floor(norm_rg/q_rg)+1; % Quantized & Indexed Channel [1 ~ Bin]
-bin_by = floor(norm_by/q_by)+1; % Quantized & Indexed Channel [1 ~ Bin]
-bin_wb = floor(norm_wb/q_wb)+1; % Quantized & Indexed Channel [1 ~ Bin]
+bin_rg = floor(norm_rg/q_rg)+1; % Quantized & Indexed Channel [1 ~ num_bin_rg]
+bin_by = floor(norm_by/q_by)+1; % Quantized & Indexed Channel [1 ~ num_bin_by]
+bin_wb = floor(norm_wb/q_wb)+1; % Quantized & Indexed Channel [1 ~ num_bin_wb]
 
 %% Histogram
 H = zeros(num_bin_rg, num_bin_by, num_bin_wb);
@@ -48,14 +48,19 @@ for i = 1:I_size(1)
     end
 end
 
-%% Show
+%% Show image
+subplot(1,2,1);
+imshow(uint8(I));
+
+%% Show 3D histogram
 S = round((H/max(H(:)))*25); % Matrix normalized to [0 ~ 25]
+subplot(1,2,2);
 hold on;
 for i = 1:num_bin_rg
     for j = 1:num_bin_by
         for k = 1:num_bin_wb
-            if S(i,j,k) ~= 0    
-                plot3(i,j,k,'s','MarkerEdgeColor','k','MarkerFaceColor',[i/num_bin_rg,j/num_bin_by,k/num_bin_wb],'MarkerSize',S(i,j,k)) % try 'o'
+            if S(i,j,k) ~= 0
+                plot3(i,j,k,'s','MarkerEdgeColor','k','MarkerFaceColor',[i/num_bin_rg,j/num_bin_by,k/num_bin_wb],'MarkerSize',S(i,j,k));
             end
         end
     end
