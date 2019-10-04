@@ -35,9 +35,9 @@ num_bin_wb = 8; % Number of bins
 q_rg = 1 / num_bin_rg; % Quantization
 q_by = 1 / num_bin_by; % Quantization
 q_wb = 1 / num_bin_wb; % Quantization
-bin_rg = floor(norm_rg/q_rg)+1; % Quantized & Indexed Channel [1 ~ num_bin_rg]
-bin_by = floor(norm_by/q_by)+1; % Quantized & Indexed Channel [1 ~ num_bin_by]
-bin_wb = floor(norm_wb/q_wb)+1; % Quantized & Indexed Channel [1 ~ num_bin_wb]
+bin_rg = floor(norm_rg/q_rg) + 1; % Quantized & Indexed Channel [1 ~ num_bin_rg]
+bin_by = floor(norm_by/q_by) + 1; % Quantized & Indexed Channel [1 ~ num_bin_by]
+bin_wb = floor(norm_wb/q_wb) + 1; % Quantized & Indexed Channel [1 ~ num_bin_wb]
 
 %% Histogram
 H = zeros(num_bin_rg, num_bin_by, num_bin_wb);
