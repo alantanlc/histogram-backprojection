@@ -28,16 +28,12 @@ for i = 1:num_files
 end
 
 %% Display histogram intersection matrix
-S = round(M * 7);  % Matrix normalized to [0 ~ 7]
-clf;
+S = round(M * 10);  % Matrix normalized to [0 ~ 25]
 hold on;
-axis ij;
-axis([1 num_files 1 num_files]);
-set(gca, 'xaxisLocation', 'top')
 for i = 1:num_files
     for j = 1:num_files
         if S(i,j) ~= 0
-           plot(i,j,'square','MarkerEdgeColor','none','MarkerFaceColor','k','MarkerSize',S(i,j));
+           plot(i,num_files-j+1,'s','MarkerEdgeColor',[1 1 1],'MarkerFaceColor','k','MarkerSize',S(i,j));
         end
     end
 end
