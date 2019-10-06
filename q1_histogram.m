@@ -1,8 +1,8 @@
 %% Clear command window and workspace
-clear; clc;
+clear; clc; clf;
 
 %% Read Image
-I = imread('./Training/11.jpg');
+I = imread('./Training/0.jpg');
 
 %% Compute 3D opponent color histogram
 num_bins_rg = 16;
@@ -15,10 +15,14 @@ num_bins_r = 8;
 num_bins_g = 8;
 H2 = conhist2(I, num_bins_r, num_bins_g);
 
+%% Show image
+set(gcf, 'Position', [0 250 2000 500]);
+subplot(1,3,1);
+imshow(I);
+
 %% Show 3D histogram
 S = round(H1 / max(H1(:)) * 25); % Matrix normalized to [0 ~ 25]
-figure;
-subplot(1,2,1);
+subplot(1,3,2);
 hold on;
 for i = 1:num_bins_rg
     for j = 1:num_bins_by
@@ -38,7 +42,7 @@ zlabel('wb bins');
 
 %% Show 2D histogram
 S = round(H2 / max(H2(:)) * 25); % Matrix normalized to [0 ~ 25]
-subplot(1,2,2);
+subplot(1,3,3);
 hold on;
 for i = 1:num_bins_r
     for j = 1:num_bins_g

@@ -1,6 +1,9 @@
 %% Clear command window and workspace
 clear; clc;
 
+%% Set figure window size
+set(gcf, 'Position', get(0, 'Screensize'));
+
 %% Read images
 files = dir('./Training/*.jpg');
 num_files = length(files);
