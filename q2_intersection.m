@@ -20,7 +20,6 @@ for i = 1:num_files
 end
 
 %% Compute match values
-match_values = zeros(num_files, num_files);
 for i = 1:num_files
     for j = 1:num_files
         M(i,j) = match(H(:,:,:,i), H(:,:,:,j));
