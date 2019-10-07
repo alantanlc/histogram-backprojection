@@ -1,3 +1,5 @@
+%% Run code and press any key to iterate through each set of model and test image
+
 % Clear command window and workspace
 clear; clc; clf;
 
