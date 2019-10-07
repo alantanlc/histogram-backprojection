@@ -64,8 +64,6 @@ function [J, B, x, y, m] = backproject(M, I, radius, num_bins_rg, num_bins_by, n
     D(D >= radius) = 0;
     
     %% Convolve backprojected image with mask
-    a = fft2(J);
-    b = fft2(D);
     B = ifft2((fft2(J) .* fft2(D)));
     
     %% Find x, y and min
