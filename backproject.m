@@ -1,7 +1,8 @@
-function J = backproject(M, I, num_bins_rg, num_bins_by, num_bins_wb)
+function [J, B, x, y, m] = backproject(M, I, radius, num_bins_rg, num_bins_by, num_bins_wb)
     %% Compute 3D opponent color histograms
     H1 = opphist3(M, num_bins_rg, num_bins_by, num_bins_wb);
     H2 = opphist3(I, num_bins_rg, num_bins_by, num_bins_wb);
+    H2(H2 == 0) = eps('double');
 
     %% Compute ratio histogram
     for i = 1:num_bins_rg
@@ -46,11 +47,31 @@ function J = backproject(M, I, num_bins_rg, num_bins_by, num_bins_wb)
     bin_by = floor(norm_by * num_bins_by) + 1;
     bin_wb = floor(norm_wb * num_bins_wb) + 1;
     
-    %% Backproject ratio histogram
+    %% Compute backprojected image from ratio histogram
     I_size = size(I);
     for i = 1:I_size(1)
         for j = 1:I_size(2)
             J(i,j) = R(bin_rg(i,j), bin_by(i,j), bin_wb(i,j));
         end
     end
+    
+    %% Construct convolution mask
+    num_rows = floor(I_size(1)/2);
+    num_cols = floor(I_size(2)/2);
+    [X,Y] = meshgrid(-num_cols:num_cols-1, -num_rows:num_rows);
+    D = sqrt(X.^2 + Y.^2);
+    D(D < radius) = 1;
+    D(D >= radius) = 0;
+    
+    %% Convolve backprojected image with mask
+    a = fft2(J);
+    b = fft2(D);
+    B = ifft2((fft2(J) .* fft2(D)));
+    
+    %% Find x, y and min
+    [r_min, r_ind] = min(B);
+    [c_min, c_ind] = min(r_min);
+    x = c_ind;
+    y = r_ind(c_ind);
+    m = c_min;
 end
