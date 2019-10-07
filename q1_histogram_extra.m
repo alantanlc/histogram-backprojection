@@ -1,3 +1,5 @@
+%% Run code and press any key to iterate through 2 images each time
+
 %% Clear command window and workspace
 clear; clc;
 

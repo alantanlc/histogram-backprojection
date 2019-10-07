@@ -1,11 +1,8 @@
-function out = match(I, M)
-    num_bins_rg = 16;
-    num_bins_by = 16;
-    num_bins_wb = 8;
-    
+function out = match(I, M, num_bins_rg, num_bins_by, num_bins_wb)    
     intersection = 0;
     M_sum = 0;
     
+    % Compute intersection of the histograms
     for i = 1:num_bins_rg
         for j = 1:num_bins_by
             for k = 1:num_bins_wb
@@ -15,5 +12,6 @@ function out = match(I, M)
         end
     end
     
+    % Convert intersection to fractional match value
     out = intersection / M_sum;
 end

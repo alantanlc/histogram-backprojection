@@ -22,7 +22,7 @@ end
 %% Compute fractional match values
 for i = 1:num_files
     for j = 1:num_files
-        M(i,j) = match(H(:,:,:,i), H(:,:,:,j));
+        M(i,j) = match(H(:,:,:,i), H(:,:,:,j), num_bins_rg, num_bins_by, num_bins_wb);
     end
 end
 
