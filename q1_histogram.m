@@ -8,17 +8,29 @@ I = imread('./Training/0.jpg');
 num_bins_rg = 16;
 num_bins_by = 16;
 num_bins_wb = 8;
+
+tic;
 H1 = opphist3(I, num_bins_rg, num_bins_by, num_bins_wb);
+toc;
 
 %% Compute 2D color constancy histogram
 num_bins_r = 8;
 num_bins_g = 8;
+
+tic;
 H2 = conhist2(I, num_bins_r, num_bins_g);
+toc;
 
 %% Show image
 set(gcf, 'Position', [0 250 2000 500]);
 subplot(1,3,1);
 imshow(I);
+
+%% Explanation Demo
+% Z(:,:,1) = [150 100 50; 100 150 100; 50 200 50];
+% Z(:,:,2) = [50 50 50; 50 50 50; 50 50 50];
+% Z(:,:,3) = [200 200 200; 200 200 200; 200 200 200];
+% H1 = opphist3(Z, num_bins_rg, num_bins_by, num_bins_wb);
 
 %% Show 3D histogram
 S = round(H1 / max(H1(:)) * 25); % Matrix normalized to [0 ~ 25]
