@@ -1,4 +1,6 @@
-# anonymous-paper-2
+# Histogram Backprojection
+
+MATLAB implementation of 3D Histogram and Histogram Backprojection.
 
 ### References
 
