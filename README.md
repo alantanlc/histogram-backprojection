@@ -14,7 +14,7 @@ MATLAB implementation of 3D Histogram and Histogram Backprojection.
 
 ![image3](./static/img/histogram_intersection_matrix.png)
 
-### References
+# References
 
 Compute and plot 3D histogram: [3D Histogram](https://www.mathworks.com/matlabcentral/fileexchange/52686-representation-of-the-3d-joint-rgb-histogram)
 
