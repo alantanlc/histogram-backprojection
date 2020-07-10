@@ -12,7 +12,7 @@ MATLAB implementation of 3D Histogram and Histogram Backprojection.
 
 ### Histogram Backprojection
 
-![image3](./static/img/histogram_intersection_matrix.png)
+![image3](./static/img/histogram_backprojection.png)
 
 # References
 
